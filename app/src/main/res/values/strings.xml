@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Androidify</string>
+    <string name="activity_a">Activity A</string>
+    <string name="activity_b">Activity B</string>
+    <string name="activity_c">Activity C</string>
+    <string name="standard">Standard</string>
+    <string name="singleTop">Single Top</string>
+    <string name="singleTask">Single Task</string>
+    <string name="singleInstance">Single Instance</string>
+</resources>
