@@ -17,9 +17,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         Timber.d("$TAG -> onCreate()")
-        setupFragment()
+
+        //Add a [Fragment] Dynamically
+//        setContentView(R.layout.activity_main)
+//        setupFragment()
+
+        //Add a [Fragment] Statically
+        setContentView(R.layout.activity_main_static)
     }
 
     override fun onRestart() {
@@ -55,9 +60,9 @@ class MainActivity : AppCompatActivity() {
     /**
      * Adding a [Fragment] Dynamically
      */
-    private fun setupFragment() {
+    /*private fun setupFragment() {
         supportFragmentManager.beginTransaction()
             .add(R.id.contentFrame, NormalFragment.newInstance(), TAG)
             .commit()
-    }
+    }*/
 }

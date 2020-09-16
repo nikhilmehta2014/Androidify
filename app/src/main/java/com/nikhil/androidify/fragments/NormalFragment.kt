@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.nikhil.androidify.R
 import timber.log.Timber
 
 class NormalFragment : Fragment() {
@@ -28,7 +29,7 @@ class NormalFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Timber.d("$TAG -> onCreateView()")
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_normal, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
