@@ -1,9 +1,10 @@
-package com.nikhil.androidify
+package com.nikhil.androidify.launchmodes.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.nikhil.androidify.R
 import kotlinx.android.synthetic.main.activity_fifth.*
 
 class FifthActivity:AppCompatActivity() {

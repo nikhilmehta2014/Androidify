@@ -18,7 +18,7 @@
             </intent-filter>-->
         </activity>
         <activity
-            android:name=".FirstActivity"
+            android:name=".launchmodes.activity.FirstActivity"
             android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,19 +27,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SecondActivity"
+            android:name=".launchmodes.activity.SecondActivity"
             android:launchMode="standard" />
         <activity
-            android:name=".ThirdActivity"
+            android:name=".launchmodes.activity.ThirdActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".FourthActivity"
+            android:name=".launchmodes.activity.FourthActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".FifthActivity"
+            android:name=".launchmodes.activity.FifthActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".SixthActivity"
+            android:name=".launchmodes.activity.SixthActivity"
             android:launchMode="singleInstance" />
     </application>
 

@@ -1,10 +1,11 @@
-package com.nikhil.androidify
+package com.nikhil.androidify.launchmodes.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.nikhil.androidify.R
 
 class ThirdActivity : AppCompatActivity() {
 

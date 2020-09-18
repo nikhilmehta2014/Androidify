@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/lifecycle_fragment"
-        android:name="com.nikhil.androidify.fragments.NormalFragment"
+        android:name="com.nikhil.androidify.launchmodes.fragments.NormalFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity"/>

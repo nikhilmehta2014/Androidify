@@ -1,4 +1,4 @@
-package com.nikhil.androidify.fragments
+package com.nikhil.androidify.launchmodes.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -2,7 +2,7 @@ package com.nikhil.androidify
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.nikhil.androidify.fragments.NormalFragment
+import com.nikhil.androidify.launchmodes.fragments.NormalFragment
 import timber.log.Timber
 
 /**
