@@ -7,4 +7,5 @@
     <string name="singleTop">Single Top</string>
     <string name="singleTask">Single Task</string>
     <string name="singleInstance">Single Instance</string>
+    <string name="add_word">Add Word</string>
 </resources>
