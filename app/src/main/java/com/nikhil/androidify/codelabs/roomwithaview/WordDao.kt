@@ -1,5 +1,6 @@
 package com.nikhil.androidify.codelabs.roomwithaview
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -22,9 +23,16 @@ interface WordDao {
     /**
      * Getting all words ordered alphabetically
      * [Query] requires that you provide a SQL query as a string parameter to the annotation, allowing for complex read queries and other operations.
+     *
+     * Use a return value of type [LiveData] in your method description, and
+     * Room generates all necessary code to update the [LiveData] when the database is updated.
+     *
+     * <Note>:
+     * If you use [LiveData] independently from [Room], you have to manage updating the data.
+     * LiveData has no publicly available methods to update the stored data.
      */
     @Query("SELECT * from word_table ORDER BY word ASC")
-    fun getAlphabetizedWords(): List<Word>
+    fun getAlphabetizedWords(): LiveData<List<Word>>
 
     /**
      * Declares a [suspend] function to insert one word
