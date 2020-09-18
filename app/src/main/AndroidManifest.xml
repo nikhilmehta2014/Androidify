@@ -20,11 +20,11 @@
         <activity
             android:name=".launchmodes.activity.FirstActivity"
             android:launchMode="standard">
-            <intent-filter>
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity
             android:name=".launchmodes.activity.SecondActivity"
@@ -41,6 +41,13 @@
         <activity
             android:name=".launchmodes.activity.SixthActivity"
             android:launchMode="singleInstance" />
+        <activity android:name=".codelabs.roomwithaview.WordActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
