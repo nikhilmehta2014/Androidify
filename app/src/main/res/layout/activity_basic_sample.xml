@@ -6,6 +6,18 @@
     <!--The <data> tag will contain layout variables.-->
     <data>
 
+        <!--
+        Static data binding:-
+
+        Create two String layout variables inside the <data> tag.
+        -->
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="lastName"
+            type="String" />
     </data>
 
     <!--
@@ -38,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!--Layout expressions start with an @ symbol and are wrapped inside curly braces { }.-->
         <TextView
             android:id="@+id/plain_name"
             android:layout_width="0dp"
@@ -45,6 +58,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="128dp"
+            android:text="@{name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,6 +71,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="128dp"
+            android:text="@{lastName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
