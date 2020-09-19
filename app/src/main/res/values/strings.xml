@@ -31,5 +31,7 @@
     <string name="name_label">Name</string>
     <string name="profile_avatar_cd">Profile\'s avatar</string>
     <string name="like">Like</string>
+    <string name="click_to_start">Click to start</string>
+    <string name="basic_coroutines">Basic Coroutines</string>
 
 </resources>

@@ -42,6 +42,7 @@
         <activity android:name=".projects.TopicsActivity" />
         <activity android:name=".codelabs.CodeLabsActivity" />
         <activity android:name=".codelabs.databinding.basicsample.BasicSampleActivity" />
+        <activity android:name=".codelabs.coroutines.main.BasicCoroutinesActivity" />
     </application>
 
 </manifest>
