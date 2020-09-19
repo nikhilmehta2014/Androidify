@@ -1,4 +1,4 @@
-package com.nikhil.androidify.launchmodes.activity
+package com.nikhil.androidify.projects.launchmodes
 
 import android.content.Intent
 import android.os.Bundle

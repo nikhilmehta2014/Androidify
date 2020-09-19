@@ -1,23 +1,23 @@
-package com.nikhil.androidify.launchmodes.activity
+package com.nikhil.androidify.projects.launchmodes
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import com.nikhil.androidify.R
-import kotlinx.android.synthetic.main.activity_fourth.*
 
-class FourthActivity : AppCompatActivity() {
+class SecondActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fourth)
+        setContentView(R.layout.activity_second)
 
         Toast.makeText(this, "Task Id = $taskId", Toast.LENGTH_SHORT).show()
 
-        btn_d.setOnClickListener {
-            startActivity(Intent(this, FifthActivity::class.java))
+        val aButton = findViewById<Button>(R.id.btn_b)
+        aButton.setOnClickListener{
+            startActivity(Intent(this, ThirdActivity::class.java))
         }
-
     }
 }

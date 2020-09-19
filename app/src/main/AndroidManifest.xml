@@ -18,26 +18,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".launchmodes.activity.FirstActivity"
+            android:name=".projects.launchmodes.FirstActivity"
             android:launchMode="standard">
         </activity>
         <activity
-            android:name=".launchmodes.activity.SecondActivity"
+            android:name=".projects.launchmodes.SecondActivity"
             android:launchMode="standard" />
         <activity
-            android:name=".launchmodes.activity.ThirdActivity"
+            android:name=".projects.launchmodes.ThirdActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".launchmodes.activity.FourthActivity"
+            android:name=".projects.launchmodes.FourthActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".launchmodes.activity.FifthActivity"
+            android:name=".projects.launchmodes.FifthActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".launchmodes.activity.SixthActivity"
+            android:name=".projects.launchmodes.SixthActivity"
             android:launchMode="singleInstance" />
         <activity android:name=".codelabs.roomwithaview.WordActivity" />
         <activity android:name=".codelabs.roomwithaview.NewWordActivity" />
+        <activity android:name=".projects.lifecycle.LifecycleActivity" />
+        <activity android:name=".projects.TopicsActivity" />
+        <activity android:name=".codelabs.CodeLabsActivity" />
     </application>
 
 </manifest>

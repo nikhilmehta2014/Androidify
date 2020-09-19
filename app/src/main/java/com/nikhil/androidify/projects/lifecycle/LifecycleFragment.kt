@@ -1,4 +1,4 @@
-package com.nikhil.androidify.launchmodes.fragments
+package com.nikhil.androidify.projects.lifecycle
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import androidx.fragment.app.Fragment
 import com.nikhil.androidify.R
 import timber.log.Timber
 
-class NormalFragment : Fragment() {
+class LifecycleFragment : Fragment() {
 
     companion object {
 
         private const val TAG = "NormalFragment"
 
         @JvmStatic
-        fun newInstance() = NormalFragment()
+        fun newInstance() = LifecycleFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class NormalFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Timber.d("$TAG -> onCreateView()")
-        return inflater.inflate(R.layout.fragment_normal, container, false)
+        return inflater.inflate(R.layout.fragment_lifecycle, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

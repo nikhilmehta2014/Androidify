@@ -1,4 +1,4 @@
-package com.nikhil.androidify.launchmodes.activity
+package com.nikhil.androidify.projects.launchmodes
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,17 +7,17 @@ import android.widget.Button
 import android.widget.Toast
 import com.nikhil.androidify.R
 
-class SecondActivity : AppCompatActivity() {
+class ThirdActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second)
+        setContentView(R.layout.activity_third)
 
         Toast.makeText(this, "Task Id = $taskId", Toast.LENGTH_SHORT).show()
 
-        val aButton = findViewById<Button>(R.id.btn_b)
-        aButton.setOnClickListener{
-            startActivity(Intent(this, ThirdActivity::class.java))
+        val cButton = findViewById<Button>(R.id.btn_c)
+        cButton.setOnClickListener{
+            startActivity(Intent(this, FourthActivity::class.java))
         }
     }
 }

@@ -13,4 +13,12 @@
     <string name="hint_word">Word...</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="codelabs_projects">CodeLabs Projects</string>
+    <string name="topics">Topics</string>
+    <string name="lifecycle">Lifecycle</string>
+    <string name="launchmodes">Launch Modes</string>
+    <string name="room">Room</string>
+    <string name="data_binding">DataBinding</string>
+    <string name="activity_codeLabs">CodeLabs</string>
+    <string name="activity_topics">Topics</string>
 </resources>

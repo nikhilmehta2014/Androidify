@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+    android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/tv_codelabs_projects"
+        android:id="@+id/tv_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_50dp"
@@ -20,28 +13,28 @@
         android:background="#E57373"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
-        android:text="@string/codelabs_projects"
+        android:text="@string/room"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/tv_topics"
+        android:id="@+id/tv_data_binding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="#E57373"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
-        android:text="@string/topics"
+        android:text="@string/data_binding"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal" />
+        app:layout_constraintTop_toBottomOf="@id/tv_room" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

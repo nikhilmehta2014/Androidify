@@ -1,4 +1,4 @@
-package com.nikhil.androidify.launchmodes.activity
+package com.nikhil.androidify.projects.launchmodes
 
 import android.os.Bundle
 import android.widget.Toast
