@@ -12,9 +12,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.nikhil.androidify.R
+import com.nikhil.androidify.databinding.ActivityBasicSampleBinding
 
 /**
  * The Data Binding Library is an Android Jetpack library that allows you to bind UI components in your XML layouts to "data sources" in your app
@@ -53,10 +55,17 @@ class BasicSampleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_basic_sample)
+        /**
+         * You'll need [binding] variable to set those layout variables you declared in the <data> block.
+         *
+         * Binding classes are generated automatically by the library.
+         */
+        val binding: ActivityBasicSampleBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_basic_sample)
+        binding.name = "Nikhil"
+        binding.lastName = "Mehta"
 
         // TODO: Explicitly setting initial values is a bad pattern. We'll fix that.
-        updateName()
         updateLikes()
     }
 
@@ -67,14 +76,6 @@ class BasicSampleActivity : AppCompatActivity() {
     fun onLike(view: View) {
         viewModel.onLike()
         updateLikes()
-    }
-
-    /**
-     * So much findViewById! We'll fix that with Data Binding.
-     */
-    private fun updateName() {
-        findViewById<TextView>(R.id.plain_name).text = viewModel.name
-        findViewById<TextView>(R.id.plain_lastname).text = viewModel.lastName
     }
 
     /**
