@@ -62,19 +62,9 @@ class BasicSampleActivity : AppCompatActivity() {
          */
         val binding: ActivityBasicSampleBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_basic_sample)
-        binding.name = "Nikhil"
-        binding.lastName = "Mehta"
+        binding.viewModel=viewModel
 
         // TODO: Explicitly setting initial values is a bad pattern. We'll fix that.
-        updateLikes()
-    }
-
-    /**
-     * This method is triggered by the `android:onclick` attribute in the layout. It puts business
-     * logic in the activity, which is not ideal. We should do something about that.
-     */
-    fun onLike(view: View) {
-        viewModel.onLike()
         updateLikes()
     }
 

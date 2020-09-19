@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Check for Data Binding errors by clicking on "Make Project" in the Build menu in Android Studio.
+Problems will prevent the app from building and the errors will be shown in the build log.
+-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -7,17 +11,13 @@
     <data>
 
         <!--
-        Static data binding:-
-
-        Create two String layout variables inside the <data> tag.
+        Replace the two variables for a single ViewModel.
+        This is the way to go in the majority of cases since it keeps your presentation code and state in one place.
         -->
         <variable
-            name="name"
-            type="String" />
+            name="viewModel"
+            type="com.nikhil.androidify.codelabs.databinding.BasicSampleViewModel" />
 
-        <variable
-            name="lastName"
-            type="String" />
     </data>
 
     <!--
@@ -58,7 +58,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="128dp"
-            android:text="@{name}"
+            android:text="@{viewModel.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +71,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="128dp"
-            android:text="@{lastName}"
+            android:text="@{viewModel.lastName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,6 +103,13 @@
             app:layout_constraintStart_toStartOf="@+id/likes_label"
             app:layout_constraintTop_toBottomOf="@+id/likes_label" />
 
+        <!--
+        The former onClick attribute used an unsafe mechanism in which the onLike() method in the activity or fragment is called when the view is clicked.
+        If a method with that exact signature doesn't exist, the app crashes.
+
+        The new way is much safer because it's checked at compile time and
+        uses a lambda expression to call the onLike() method of the view model.
+        -->
         <Button
             android:id="@+id/like_button"
             android:layout_width="wrap_content"
@@ -110,7 +117,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:onClick="onLike"
+            android:onClick="@{() -> viewModel.onLike()}"
             android:text="@string/like"
             app:layout_constraintBottom_toTopOf="@+id/progressBar"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
