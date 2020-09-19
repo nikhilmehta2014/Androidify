@@ -1,4 +1,4 @@
-package com.nikhil.androidify.codelabs.databinding
+package com.nikhil.androidify.codelabs.databinding.basicsample
 
 import android.app.Activity
 import android.os.Bundle

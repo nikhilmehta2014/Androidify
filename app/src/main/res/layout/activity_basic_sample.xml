@@ -16,7 +16,7 @@ Problems will prevent the app from building and the errors will be shown in the 
         -->
         <variable
             name="viewModel"
-            type="com.nikhil.androidify.codelabs.databinding.BasicSampleViewModel" />
+            type="com.nikhil.androidify.codelabs.databinding.basicsample.BasicSampleViewModel" />
 
     </data>
 

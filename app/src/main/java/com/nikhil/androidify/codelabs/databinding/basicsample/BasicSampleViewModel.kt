@@ -1,4 +1,4 @@
-package com.nikhil.androidify.codelabs.databinding
+package com.nikhil.androidify.codelabs.databinding.basicsample
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.nikhil.androidify.R
-import com.nikhil.androidify.codelabs.databinding.BasicSampleActivity
+import com.nikhil.androidify.codelabs.databinding.basicsample.BasicSampleActivity
 import com.nikhil.androidify.codelabs.roomwithaview.WordActivity
 import kotlinx.android.synthetic.main.activity_codelabs.*
 

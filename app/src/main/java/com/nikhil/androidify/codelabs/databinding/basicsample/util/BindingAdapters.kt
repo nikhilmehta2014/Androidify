@@ -1,4 +1,4 @@
-package com.nikhil.androidify.codelabs.databinding.util
+package com.nikhil.androidify.codelabs.databinding.basicsample.util
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.BindingAdapter
 import com.nikhil.androidify.R
-import com.nikhil.androidify.codelabs.databinding.Popularity
+import com.nikhil.androidify.codelabs.databinding.basicsample.Popularity
 
 const val MAX_LIKES_TO_FILL_PROGRESS_BAR = 5
 /**
