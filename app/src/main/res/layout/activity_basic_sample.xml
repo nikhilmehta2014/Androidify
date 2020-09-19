@@ -77,6 +77,10 @@ Problems will prevent the app from building and the errors will be shown in the 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lastname_label" />
 
+        <!--
+        A custom Binding Adapter (`app:popularityIcon`) is used in passing `viewmodel.popularity` as a parameter.
+        Because it's a @Bindable property, the ImageView is automatically updated.
+        -->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
@@ -90,7 +94,8 @@ Problems will prevent the app from building and the errors will be shown in the 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            app:popularityIcon="@{viewModel.popularity}" />
 
         <TextView
             android:id="@+id/likes"
@@ -163,6 +168,8 @@ Problems will prevent the app from building and the errors will be shown in the 
         We're binding the progressScaled attribute to the number of likes and we're just passing a literal integer to the max attribute.
         If you don't add the @{} format, Data Binding won't be able to find the correct Binding Adapter.
         -->
+
+        <!-- android:progressTint is only available in API 21+ so we deal with that in the Binding Adapter. -->
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
@@ -171,14 +178,15 @@ Problems will prevent the app from building and the errors will be shown in the 
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:hideIfZero="@{viewModel.likes}"
-            app:progressScaled="@{viewModel.likes}"
             android:max="@{100}"
+            app:hideIfZero="@{viewModel.likes}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/like_button"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/like_button"
             app:layout_constraintTop_toBottomOf="@+id/like_button"
+            app:progressScaled="@{viewModel.likes}"
+            app:progressTint="@{viewModel.popularity}"
             tools:progressBackgroundTint="@android:color/darker_gray" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
