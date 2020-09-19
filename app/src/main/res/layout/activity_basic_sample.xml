@@ -167,6 +167,7 @@ Problems will prevent the app from building and the errors will be shown in the 
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            app:hideIfZero="@{viewModel.likes}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/like_button"
             app:layout_constraintHorizontal_bias="0.5"
