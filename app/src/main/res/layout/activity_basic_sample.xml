@@ -159,6 +159,10 @@ Problems will prevent the app from building and the errors will be shown in the 
             app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+        <!--
+        We're binding the progressScaled attribute to the number of likes and we're just passing a literal integer to the max attribute.
+        If you don't add the @{} format, Data Binding won't be able to find the correct Binding Adapter.
+        -->
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
@@ -168,6 +172,8 @@ Problems will prevent the app from building and the errors will be shown in the 
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             app:hideIfZero="@{viewModel.likes}"
+            app:progressScaled="@{viewModel.likes}"
+            android:max="@{100}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/like_button"
             app:layout_constraintHorizontal_bias="0.5"
