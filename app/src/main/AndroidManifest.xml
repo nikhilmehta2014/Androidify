@@ -41,6 +41,7 @@
         <activity android:name=".projects.lifecycle.LifecycleActivity" />
         <activity android:name=".projects.TopicsActivity" />
         <activity android:name=".codelabs.CodeLabsActivity" />
+        <activity android:name=".codelabs.databinding.BasicSampleActivity" />
     </application>
 
 </manifest>

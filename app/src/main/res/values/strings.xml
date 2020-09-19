@@ -8,7 +8,7 @@
     <string name="singleTask">Single Task</string>
     <string name="singleInstance">Single Instance</string>
 
-    <!--Android Room with a View - Kotlin-->
+    <!--Android Room with a View - Kotlin - CodeLabs-->
     <string name="add_word">Add Word</string>
     <string name="hint_word">Word...</string>
     <string name="button_save">Save</string>
@@ -21,4 +21,15 @@
     <string name="data_binding">DataBinding</string>
     <string name="activity_codeLabs">CodeLabs</string>
     <string name="activity_topics">Topics</string>
+
+    <!--Data Binding in Android - CodeLabs-->
+    <string name="likes">Likes</string>
+    <string name="textview">TextView</string>
+    <string name="profile_name">NAME</string>
+    <string name="profile_lastname">LAST NAME</string>
+    <string name="last_name_label">Last name</string>
+    <string name="name_label">Name</string>
+    <string name="profile_avatar_cd">Profile\'s avatar</string>
+    <string name="like">Like</string>
+
 </resources>
