@@ -144,3 +144,82 @@ suspend fun anotherFetch(): AnotherResult { ... }
 >However in Kotlin, `await`() is implicit when calling a `suspend` function.
 >
 >Kotlin has a method `Deferred.await`() that is used to wait for the result from a coroutine started with the `async` builder.
+
+
+### Moving from callbacks to coroutines
+
+It's a good idea to understand what each part of the architecture is responsible for before we switch them to using coroutines.
+1. `BasicCoroutinesDatabase` implements a database using Room that saves and loads a `Title`.
+2. `BasicCoroutinesNetwork` implements a network API that fetches a new title. 
+It uses `Retrofit` to fetch titles. Retrofit is configured to randomly return errors or mock data, but otherwise behaves as if it's making real network requests.
+3. `TitleRepository` implements a single API for fetching or refreshing the title by combining data from the network and database.
+4. `BasicCoroutinesViewModel` represents the screen's state and handles events. It will tell the repository to refresh the title when the user taps on the screen.
+
+Since the network request is driven by UI-events and we want to start a coroutine based on them, the natural place to start using coroutines is in the `ViewModel`.
+
+Let's step through the function `refreshTitle` in `BasicCoroutinesViewModel`:
+```kotlin
+viewModelScope.launch {
+```
+Just like the coroutine to update the tap count, begin by launching a new coroutine in `viewModelScope`. 
+This will use `Dispatchers.Main` which is OK. 
+Even though `refreshTitle` will make a network request and database query it can use coroutines to expose a **main-safe** interface. 
+This means it'll be safe to call it from the main thread.
+
+Because we're using `viewModelScope`, when the user moves away from this screen the work started by this coroutine will automatically be cancelled. 
+That means it won't make extra network requests or database queries.
+
+> When creating a coroutine from a non-coroutine, start with [launch](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html).
+>
+>That way, if they throw an uncaught exception it'll automatically be propagated to uncaught exception handlers (which by default crash the app). 
+>A coroutine started with `async` won't throw an exception to its caller until you call `await`. 
+>However, you can only call `await` from inside a coroutine, since it is a `suspend` function.
+>
+>Once inside a coroutine, you can use `launch` or `async` to start child coroutines. 
+>Use `launch` for when you don't have a result to return, and `async` when you do.
+
+The next few lines of code actually call `refreshTitle` in the `repository`.
+```kotlin
+try {
+    _spinner.value = true
+    repository.refreshTitle()
+}
+```
+Before this coroutine does anything it starts the loading spinner – then it calls `refreshTitle` just like a regular function. 
+However, since refreshTitle is a `suspending` function, it executes differently than a normal function.
+
+We don't have to pass a callback. 
+The coroutine will suspend until it is resumed by `refreshTitle`. 
+While it looks just like a regular blocking function call, it will automatically wait 
+until the network and database query are complete before resuming **without blocking the main thread**.
+
+```kotlin
+} catch (error: TitleRefreshError) {
+    _snackBar.value = error.message
+} finally {
+    _spinner.value = false
+}
+```
+Exceptions in `suspend` functions work just like errors in regular functions. 
+If you throw an error in a suspend function, it will be thrown to the caller. 
+So even though they execute quite differently, you can use regular try/catch blocks to handle them. 
+This is useful because it lets you rely on the built-in language support for error handling instead of building custom error handling for every callback.
+
+And, if you throw an exception out of a coroutine – that coroutine will cancel it's parent by default. 
+That means it's **easy to cancel several related tasks together**.
+
+And then, in a finally block, we can make sure that the spinner is always turned off after the query runs.
+
+> **What happens to uncaught exceptions**
+>
+> Uncaught exceptions in a coroutine are similar to uncaught exceptions in non-coroutine code. 
+>By default, they'll cancel the coroutine's `Job`, and notify parent coroutines that they should cancel themselves. 
+>If no coroutine handles the exception, it will eventually be passed to an uncaught exception handler on the `CoroutineScope`.
+>
+> By default, uncaught exceptions will be sent to the thread's uncaught exception handler on the JVM. 
+> You can customize this behavior by providing a [CoroutineExceptionHandler](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html).
+ 
+
+
+
+

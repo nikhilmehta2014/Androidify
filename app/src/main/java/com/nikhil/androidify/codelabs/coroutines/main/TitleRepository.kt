@@ -3,6 +3,7 @@ package com.nikhil.androidify.codelabs.coroutines.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.nikhil.androidify.codelabs.coroutines.util.BACKGROUND
+import kotlinx.coroutines.delay
 
 /**
  * TitleRepository provides an interface to fetch a title or request a new one be generated.
@@ -56,6 +57,14 @@ class TitleRepository(private val network: BasicCoroutinesNetwork, private val t
                     TitleRefreshError("Unable to refresh title", cause))
             }
         }
+    }
+
+    /**
+     * `suspend` operator to tell Kotlin that it **works with coroutines**
+     */
+    suspend fun refreshTitle() {
+        // TODO: Refresh from network and write to database
+        delay(500)
     }
 }
 

@@ -122,18 +122,34 @@ class BasicCoroutinesViewModel(private val repository: TitleRepository) : ViewMo
     /**
      * Refresh the title, showing a loading spinner while it refreshes and errors via snackbar.
      */
-    fun refreshTitle() {
-        // TODO: Convert refreshTitle to use coroutines
-        _spinner.value = true
-        repository.refreshTitleWithCallbacks(object : TitleRefreshCallback {
-            override fun onCompleted() {
-                _spinner.postValue(false)
-            }
 
-            override fun onError(cause: Throwable) {
-                _snackBar.postValue(cause.message)
-                _spinner.postValue(false)
+    /** This function is called every time the user clicks on the screen – and
+     * it will cause the repository to refresh the title and write the new title to the database.
+     *
+     * This implementation uses a callback to do a few things:
+     * - Before it starts a query, it displays a loading spinner with `_spinner.value = true`
+     * - When it gets a result, it clears the loading spinner with `_spinner.value = false`
+     * - If it gets an error, it tells a snackbar to display and clears the spinner
+     *
+     * Note that the `onCompleted` callback is not passed the `title`.
+     * Since we write all titles to the `Room` database, the UI updates to the current title by observing a `LiveData` that's updated by `Room`.
+     *
+     * In the update to coroutines, we'll keep the exact same behavior.
+     * It's a **good pattern** to use an observable data source like a `Room` database to automatically keep the UI up to date.
+     *
+     * Check (https://github.com/nikhilmehta2014/Androidify/blob/master/app/src/main/java/com/nikhil/androidify/codelabs/coroutines/README.md#moving-from-callbacks-to-coroutines)
+     * for more details.
+     */
+    private fun refreshTitle() {
+        viewModelScope.launch {
+            try {
+                _spinner.value = true
+                repository.refreshTitle()
+            } catch (error: TitleRefreshError) {
+                _snackBar.value = error.message
+            } finally {
+                _spinner.value = false
             }
-        })
+        }
     }
 }
