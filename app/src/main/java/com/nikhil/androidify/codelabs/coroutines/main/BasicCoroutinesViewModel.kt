@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.nikhil.androidify.codelabs.coroutines.util.BACKGROUND
 import com.nikhil.androidify.codelabs.coroutines.util.singleArgViewModelFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -141,10 +142,23 @@ class BasicCoroutinesViewModel(private val repository: TitleRepository) : ViewMo
      * for more details.
      */
     private fun refreshTitle() {
-        viewModelScope.launch {
+        launchDataLoad {
+            repository.refreshTitle()
+        }
+    }
+
+    /**
+     * To build this abstraction, `launchDataLoad` takes an argument `block` that is a "suspend lambda".
+     * A suspend lambda allows you to call suspend functions.
+     * That's how Kotlin implements the coroutine builders `launch` and `runBlocking` we've been using in this codelab.
+     *
+     * To make a "suspend lambda", start with the `suspend` keyword. The function arrow and return type Unit complete the declaration.
+     */
+    private fun launchDataLoad(block: suspend () -> Unit): Job {
+        return viewModelScope.launch {
             try {
                 _spinner.value = true
-                repository.refreshTitle()
+                block()
             } catch (error: TitleRefreshError) {
                 _snackBar.value = error.message
             } finally {
