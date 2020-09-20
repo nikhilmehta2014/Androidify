@@ -3,8 +3,12 @@ package com.nikhil.androidify.codelabs.coroutines.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.nikhil.androidify.codelabs.coroutines.util.BACKGROUND
 import com.nikhil.androidify.codelabs.coroutines.util.singleArgViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * BasicCoroutinesViewModel designed to store and manage UI-related data in a lifecycle conscious way. This
@@ -82,14 +86,29 @@ class BasicCoroutinesViewModel(private val repository: TitleRepository) : ViewMo
     }
 
     /**
-     * Wait one second then update the tap count.
+     * This code does the same thing, waiting one second before showing a snackbar. However, there are some important differences:
+     * 1. [launch](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html) will start a coroutine in the [viewModelScope].
+     * This means when the job that we passed to [viewModelScope] gets canceled, all coroutines in this job/scope will be cancelled.
+     * If the user left the Activity before [delay] returned, this coroutine will automatically be cancelled when
+     * [onCleared] is called upon destruction of the ViewModel.
+     * 2. Since [viewModelScope] has a default dispatcher of [Dispatchers.Main], this coroutine will be launched in the main thread.
+     * 3. The function [delay] is a [suspend] function.
+     * This is shown in Android Studio by the  icon in the left gutter.
+     * Even though this coroutine runs on the main thread, delay won't block the thread for one second.
+     * Instead, the dispatcher will schedule the coroutine to resume in one second at the next statement.
+     */
+    /**
+     * Wait one second then display a snackbar.
      */
     private fun updateTaps() {
-        // TODO: Convert updateTaps to use coroutines
-        tapCount++
-        BACKGROUND.submit {
-            Thread.sleep(1_000)
-            _taps.postValue("${tapCount} taps")
+        // launch a coroutine in viewModelScope
+        viewModelScope.launch {
+            tapCount++
+            // suspend this coroutine for one second
+            delay(1_000)
+            // resume in the main dispatcher
+            // _snackbar.value can be called directly from main thread
+            _taps.postValue("$tapCount taps")
         }
     }
 
