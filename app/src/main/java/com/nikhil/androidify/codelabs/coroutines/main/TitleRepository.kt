@@ -40,24 +40,22 @@ class TitleRepository(private val network: BasicCoroutinesNetwork, private val t
      *
      * For more details, check - [https://github.com/nikhilmehta2014/Androidify/blob/master/app/src/main/java/com/nikhil/androidify/codelabs/coroutines/README.md#replace-callback-with-coroutines]
      */
+    /**
+     * It turns out relying on `suspend` and `resume` lets code be much shorter.
+     * [Retrofit] lets us use return types like [String] or a [User object] here, instead of a [Call].
+     * That's safe to do, because inside the [suspend] function, Retrofit is able to run the network request on a background thread and resume the coroutine when the call completes.
+     *
+     * Even better, we got rid of the [withContext].
+     * Since both [Room] and [Retrofit] provide **main-safe** suspending functions, it's safe to orchestrate this async work from [Dispatchers.Main].
+     */
     suspend fun refreshTitle() {
-        // interact with *blocking* network and IO calls from a coroutine
-        withContext(Dispatchers.IO) {
-            val result = try {
-                // Make network request using a blocking call
-                network.fetchNextTitle().execute()
-            } catch (cause: Throwable) {
-                // If the network throws an exception, inform the caller
-                throw TitleRefreshError("Unable to refresh title", cause)
-            }
-
-            if (result.isSuccessful) {
-                // Save it to database
-                titleDao.insertTitle(Title(result.body()!!))
-            } else {
-                // If it's not successful, inform the callback of the error
-                throw TitleRefreshError("Unable to refresh title", null)
-            }
+        try {
+            // Make network request using a blocking call
+            val result = network.fetchNextTitle()
+            titleDao.insertTitle(Title(result))
+        } catch (cause: Throwable) {
+            // If anything throws an exception, inform the caller
+            throw TitleRefreshError("Unable to refresh title", cause)
         }
     }
 

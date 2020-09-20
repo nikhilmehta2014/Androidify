@@ -309,8 +309,17 @@ The callback version called the callbacks on a thread in the `BACKGROUND` execut
 >
 > You can also check cancellation explicitly, which you should do when making low-level coroutine interfaces.
   
+### Coroutines in Room & Retrofit
 
- 
+> Both Room and Retrofit make suspending functions **main-safe**.
+>
+> It's **safe to call** these suspend funs from [Dispatchers.Main], even though they fetch from the network and write to the database.
 
+
+> You do not need to use `withContext` to call **main-safe** suspending functions. 
+> 
+> By convention, you should ensure that `suspend` functions written in your application are **main-safe**. 
+> That way it is safe to call them from any dispatcher, even `Dispatchers.Main`.
+  
 
 
