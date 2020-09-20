@@ -2,8 +2,8 @@ package com.nikhil.androidify.codelabs.coroutines.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.nikhil.androidify.codelabs.coroutines.util.BACKGROUND
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * TitleRepository provides an interface to fetch a title or request a new one be generated.
@@ -27,45 +27,40 @@ class TitleRepository(private val network: BasicCoroutinesNetwork, private val t
     val title: LiveData<String?> = titleDao.titleLiveData.map { it?.title }
 
 
-    // TODO: Add coroutines-based `fun refreshTitle` here
-
     /**
      * Refresh the current title and save the results to the offline cache.
      *
      * This method does not return the new title. Use [TitleRepository.title] to observe
      * the current tile.
      */
-    fun refreshTitleWithCallbacks(titleRefreshCallback: TitleRefreshCallback) {
-        // This request will be run on a background thread by retrofit
-        BACKGROUND.submit {
-            try {
+    /**
+     * `suspend` operator to tell Kotlin that it **works with coroutines**
+     *
+     * This implementation uses blocking calls for the network and database – but it's still a bit simpler than the callback version.
+     *
+     * For more details, check - [https://github.com/nikhilmehta2014/Androidify/blob/master/app/src/main/java/com/nikhil/androidify/codelabs/coroutines/README.md#replace-callback-with-coroutines]
+     */
+    suspend fun refreshTitle() {
+        // interact with *blocking* network and IO calls from a coroutine
+        withContext(Dispatchers.IO) {
+            val result = try {
                 // Make network request using a blocking call
-                val result = network.fetchNextTitle().execute()
-                if (result.isSuccessful) {
-                    // Save it to database
-                    titleDao.insertTitle(Title(result.body()!!))
-                    // Inform the caller the refresh is completed
-                    titleRefreshCallback.onCompleted()
-                } else {
-                    // If it's not successful, inform the callback of the error
-                    titleRefreshCallback.onError(
-                        TitleRefreshError("Unable to refresh title", null))
-                }
+                network.fetchNextTitle().execute()
             } catch (cause: Throwable) {
-                // If anything throws an exception, inform the caller
-                titleRefreshCallback.onError(
-                    TitleRefreshError("Unable to refresh title", cause))
+                // If the network throws an exception, inform the caller
+                throw TitleRefreshError("Unable to refresh title", cause)
+            }
+
+            if (result.isSuccessful) {
+                // Save it to database
+                titleDao.insertTitle(Title(result.body()!!))
+            } else {
+                // If it's not successful, inform the callback of the error
+                throw TitleRefreshError("Unable to refresh title", null)
             }
         }
     }
 
-    /**
-     * `suspend` operator to tell Kotlin that it **works with coroutines**
-     */
-    suspend fun refreshTitle() {
-        // TODO: Refresh from network and write to database
-        delay(500)
-    }
 }
 
 /**

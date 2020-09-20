@@ -219,7 +219,98 @@ And then, in a finally block, we can make sure that the spinner is always turned
 > By default, uncaught exceptions will be sent to the thread's uncaught exception handler on the JVM. 
 > You can customize this behavior by providing a [CoroutineExceptionHandler](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html).
  
+## Making main-safe functions from blocking code
 
+Existing callback code in refreshTitle inside `TitleRepository`:
+```kotlin
+fun refreshTitleWithCallbacks(titleRefreshCallback: TitleRefreshCallback) {
+   // This request will be run on a background thread by retrofit
+   BACKGROUND.submit {
+       try {
+           // Make network request using a blocking call
+           val result = network.fetchNextTitle().execute()
+           if (result.isSuccessful) {
+               // Save it to database
+               titleDao.insertTitle(Title(result.body()!!))
+               // Inform the caller the refresh is completed
+               titleRefreshCallback.onCompleted()
+           } else {
+               // If it's not successful, inform the callback of the error
+               titleRefreshCallback.onError(
+                       TitleRefreshError("Unable to refresh title", null))
+           }
+       } catch (cause: Throwable) {
+           // If anything throws an exception, inform the caller
+           titleRefreshCallback.onError(
+                   TitleRefreshError("Unable to refresh title", cause))
+       }
+   }
+}
+```
+
+In `TitleRepository.kt` the method `refreshTitleWithCallbacks` is implemented with a callback to communicate the loading and error state to the caller.
+
+This function does quite a few things in order to implement the refresh.
+
+1. Switch to another thread with `BACKGROUND` `ExecutorService`
+2. Run the `fetchNextTitle` network request using the blocking `execute`() method. 
+This will run the network request in the current thread, in this case one of the threads in `BACKGROUND`.
+3. If the result is successful, save it to the database with blocking `insertTitle` and call the `onCompleted`() method.
+4. If the result was not successful, or there is an exception, call the onError method to tell the caller about the failed refresh.
+
+This callback based implementation is **main-safe** because it <ins>won't block the main thread</ins>. 
+But, it has to use a callback to inform the caller when the work completes. 
+It also calls the callbacks on the BACKGROUND thread that it switched too.
+
+### Calling blocking calls from coroutines
+
+Without introducing coroutines to the network or database, we can make this code **main-safe** using coroutines. 
+This will let us get rid of the callback and allow us to pass the result back to the thread that initially called it.
+
+You can use this pattern anytime you need to do blocking or CPU intensive work from inside a coroutine 
+such as sorting and filtering a large list or reading from disk.
+
+>This pattern should be used for integrating with blocking APIs in your code or performing CPU intensive work. 
+>When possible, it's better to use regular suspend functions from libraries like Room or Retrofit.
+
+To switch between any dispatcher, coroutines uses [`withContext`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html). 
+Calling `withContext` switches to the other dispatcher just for the lambda then comes back to the dispatcher that called it with the result of that lambda.
+
+By default, Kotlin coroutines provides three Dispatchers: `Main`, `IO`, and `Default`. 
+The `IO` dispatcher is optimized for IO work like reading from the network or disk, 
+while the `Default` dispatcher is optimized for CPU intensive tasks.
+
+## Replace callback with Coroutines
+
+This code still uses **blocking** calls.
+Calling `execute`() and `insertTitle`(...) will both block the thread that this coroutine is running in. 
+However, by switching to `Dispatchers.IO` using `withContext`, we're blocking one of the threads in the IO dispatcher. 
+The coroutine that called this, possibly running on `Dispatchers.Main`, will be `suspended` until the `withContext` lambda is complete.
+
+Compared to the callback version, there are two important differences:
+
+1. `withContext` returns it's result back to the Dispatcher that called it, in this case `Dispatchers.Main`. 
+The callback version called the callbacks on a thread in the `BACKGROUND` executor service.
+
+2. The caller doesn't have to pass a callback to this function. They can rely on suspend and resume to get the result or error.
+
+> Advanced tip
+>
+> This code doesn't support coroutine cancellation, but it can! 
+> [**Coroutine cancellation is cooperative**](https://kotlinlang.org/docs/reference/coroutines/cancellation-and-timeouts.html). 
+> That means your code needs to check for cancellation explicitly, which happens for you whenever you call the functions in kotlinx-coroutines.
+>
+> Because this `withContext` block only calls blocking calls it will not be cancelled until it returns from `withContext`.
+>
+> To fix this, you can call [yield](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/yield.html) 
+> regularly to give other coroutines a chance run and check for cancellation. 
+> Here you would add a call to `yield` between the network request and the database query. 
+> Then, if the coroutine is cancelled during the network request, it won't save the result to the database.  
+>
+> You can also check cancellation explicitly, which you should do when making low-level coroutine interfaces.
+  
+
+ 
 
 
 
