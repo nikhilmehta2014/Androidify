@@ -6,11 +6,11 @@
 
     <Button
         android:id="@+id/tv_room"
+        style="@style/btn_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_50dp"
         android:layout_marginBottom="20dp"
-        android:background="#E57373"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
         android:text="@string/room"
@@ -23,10 +23,10 @@
 
     <Button
         android:id="@+id/tv_data_binding"
+        style="@style/btn_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="#E57373"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
         android:text="@string/data_binding"
@@ -39,10 +39,10 @@
 
     <Button
         android:id="@+id/tv_basic_coroutines"
+        style="@style/btn_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="#E57373"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
         android:text="@string/basic_coroutines"

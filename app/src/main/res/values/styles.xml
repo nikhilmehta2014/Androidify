@@ -17,4 +17,8 @@
         <item name="android:background">@android:color/holo_orange_light</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
     </style>
+
+    <style name="btn_bg">
+        <item name="android:background">@drawable/btn_rounded_corners</item>
+    </style>
 </resources>
