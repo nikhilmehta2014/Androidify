@@ -15,6 +15,7 @@
             android:name="androidx.work.impl.WorkManagerInitializer"
             android:authorities="${applicationId}.workmanager-init"
             tools:node="remove" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +25,7 @@
         </activity>
         <activity
             android:name=".projects.launchmodes.FirstActivity"
-            android:launchMode="standard">
-        </activity>
+            android:launchMode="standard" />
         <activity
             android:name=".projects.launchmodes.SecondActivity"
             android:launchMode="standard" />
@@ -48,6 +48,9 @@
         <activity android:name=".codelabs.CodeLabsActivity" />
         <activity android:name=".codelabs.databinding.basicsample.BasicSampleActivity" />
         <activity android:name=".codelabs.coroutines.main.BasicCoroutinesActivity" />
+        <activity
+            android:name=".projects.layouts.constraintlayout.ConstraintLayoutExample1"
+            android:exported="true" />
     </application>
 
 </manifest>

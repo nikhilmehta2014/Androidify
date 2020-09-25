@@ -33,5 +33,12 @@
     <string name="like">Like</string>
     <string name="click_to_start">Click to start</string>
     <string name="basic_coroutines">Basic Coroutines</string>
+    <string name="marginGoneDemo">Margin Gone Demo</string>
+    <string name="first">First</string>
+    <string name="dummy_text">Dummy</string>
+    <string name="second">Second</string>
+    <string name="third">Third</string>
+    <string name="button_one">Button 1</string>
+    <string name="button_two">Button 2</string>
 
 </resources>

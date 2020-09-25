@@ -3,12 +3,14 @@ package com.nikhil.androidify.projects
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.nikhil.androidify.R
 import com.nikhil.androidify.projects.launchmodes.FirstActivity
+import com.nikhil.androidify.projects.layouts.constraintlayout.ConstraintLayoutExample1
 import com.nikhil.androidify.projects.lifecycle.LifecycleActivity
 import kotlinx.android.synthetic.main.activity_topics.*
 
-class TopicsActivity :AppCompatActivity(){
+class TopicsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +22,9 @@ class TopicsActivity :AppCompatActivity(){
         }
         tv_launch_modes.setOnClickListener {
             startActivity(Intent(this, FirstActivity::class.java))
+        }
+        tv_constraint_layout_ex_1.setOnClickListener {
+            startActivity(Intent(this, ConstraintLayoutExample1::class.java))
         }
     }
 }
