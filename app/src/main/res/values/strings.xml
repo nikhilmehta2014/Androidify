@@ -40,5 +40,6 @@
     <string name="third">Third</string>
     <string name="button_one">Button 1</string>
     <string name="button_two">Button 2</string>
+    <string name="advanced_coroutines">Advanced Coroutines</string>
 
 </resources>

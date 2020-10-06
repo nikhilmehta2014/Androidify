@@ -51,6 +51,7 @@
         <activity
             android:name=".projects.layouts.constraintlayout.ConstraintLayoutExample1"
             android:exported="true" />
+        <activity android:name=".codelabs.coroutinesadvanced.AdvancedCoroutinesActivity" />
     </application>
 
 </manifest>
