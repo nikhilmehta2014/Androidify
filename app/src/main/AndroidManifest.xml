@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nikhil.androidify">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".AndroidifyApp"
         android:allowBackup="true"
@@ -51,7 +53,7 @@
         <activity
             android:name=".projects.layouts.constraintlayout.ConstraintLayoutExample1"
             android:exported="true" />
-        <activity android:name=".codelabs.coroutinesadvanced.AdvancedCoroutinesActivity" />
+        <activity android:name=".codelabs.coroutinesadvanced.ui.AdvancedCoroutinesActivity" />
     </application>
 
 </manifest>

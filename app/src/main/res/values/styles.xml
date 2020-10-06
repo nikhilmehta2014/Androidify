@@ -21,4 +21,15 @@
     <style name="btn_bg">
         <item name="android:background">@drawable/btn_rounded_corners</item>
     </style>
+
+    <style name="ShapeAppearance.Sunflower.Card" parent="ShapeAppearance.MaterialComponents">
+        <item name="cornerFamily">rounded</item>
+
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">@dimen/card_corner_radius</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">@dimen/card_corner_radius</item>
+    </style>
+
+    <dimen name="card_corner_radius">12dp</dimen>
 </resources>

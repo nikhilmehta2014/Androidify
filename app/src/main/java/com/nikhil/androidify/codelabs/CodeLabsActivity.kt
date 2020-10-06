@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.nikhil.androidify.R
 import com.nikhil.androidify.codelabs.coroutines.main.BasicCoroutinesActivity
-import com.nikhil.androidify.codelabs.coroutinesadvanced.AdvancedCoroutinesActivity
+import com.nikhil.androidify.codelabs.coroutinesadvanced.ui.AdvancedCoroutinesActivity
 import com.nikhil.androidify.codelabs.databinding.basicsample.BasicSampleActivity
 import com.nikhil.androidify.codelabs.roomwithaview.WordActivity
 import kotlinx.android.synthetic.main.activity_codelabs.*
