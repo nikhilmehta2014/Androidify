@@ -22,6 +22,10 @@ import kotlinx.coroutines.Dispatchers
 /**
  * Repository module for handling data operations.
  *
+ * [PlantRepository] provides a bridge between the [PlantListViewModel] and [PlantDao]
+ *
+ * Note: A Repository is a bridge between a ViewModel and the data
+ *
  * This PlantRepository exposes two UI-observable database queries [plants] and
  * [getPlantsWithGrowZone].
  *

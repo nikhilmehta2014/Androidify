@@ -63,6 +63,10 @@ class PlantListFragment : Fragment() {
         inflater.inflate(R.menu.menu_plant_list, menu)
     }
 
+    /**
+     * Users can tap the filter icon to toggle between showing all plants and plants for a specific grow zone,
+     * which is hardcoded to zone 9
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.filter_zone -> {
