@@ -16,6 +16,9 @@
 
 package com.nikhil.androidify.codelabs.coroutinesadvanced
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
+import androidx.lifecycle.map
 import com.nikhil.androidify.codelabs.coroutinesadvanced.utils.CacheOnSuccess
 import com.nikhil.androidify.codelabs.coroutinesadvanced.utils.ComparablePair
 import kotlinx.coroutines.CoroutineDispatcher
@@ -44,14 +47,45 @@ class PlantRepository private constructor(
      * Fetch a list of [Plant]s from the database.
      * Returns a LiveData-wrapped List of Plants.
      */
-    val plants = plantDao.getPlants()
+    /**
+     * The [LiveData] builder allows us to calculate values asynchronously,
+     * as [liveData] is backed by coroutines.
+     * Here we have a [suspend] function to fetch a LiveData list of plants from the database,
+     * while also calling a suspend function to get the custom sort order.
+     * We then combine these two values to sort the list of plants and return the value,
+     * all within the builder.
+     *
+     * Note: You can emit multiple values from a [LiveData] by calling the [emitSource] function
+     * whenever you want to emit a new value.
+     * Note that each call to [emitSource] removes the previously-added source.
+     */
+    val plants: LiveData<List<Plant>> = liveData<List<Plant>> {
+        val plantsLiveData = plantDao.getPlants()
+        val customSortOrder = plantsListSortOrderCache.getOrAwait()
+        emitSource(plantsLiveData.map { plantList ->
+            plantList.applySort(customSortOrder)
+        })
+    }
 
     /**
      * Fetch a list of [Plant]s from the database that matches a given [GrowZone].
      * Returns a LiveData-wrapped List of Plants.
      */
-    fun getPlantsWithGrowZone(growZone: GrowZone) =
-        plantDao.getPlantsWithGrowZoneNumber(growZone.number)
+    /**
+     * The coroutine starts execution when it is observed,
+     * and is cancelled when the coroutine successfully finishes or
+     * if the either the database or network call fails.
+     *
+     * If any of the suspend function calls fail, the entire block is canceled and not restarted,
+     * which helps avoid leaks.
+     */
+    fun getPlantsWithGrowZone(growZone: GrowZone): LiveData<List<Plant>> = liveData {
+        val plantsGrowZoneLiveData = plantDao.getPlantsWithGrowZoneNumber(growZone.number)
+        val customSortOrder = plantsListSortOrderCache.getOrAwait()
+        emitSource(plantsGrowZoneLiveData.map { plantList ->
+            plantList.applySort(customSortOrder)
+        })
+    }
 
     /**
      * Returns true if we should make a network request.
@@ -100,7 +134,8 @@ class PlantRepository private constructor(
     companion object {
 
         // For Singleton instantiation
-        @Volatile private var instance: PlantRepository? = null
+        @Volatile
+        private var instance: PlantRepository? = null
 
         fun getInstance(plantDao: PlantDao, plantService: NetworkService) =
             instance ?: synchronized(this) {
@@ -119,7 +154,8 @@ class PlantRepository private constructor(
         }
 
     /**
-     * This extension function will rearrange the list, placing [Plants] that are in the [customSortOrder] at the front of the list.
+     * This extension function will rearrange the list,
+     * placing [Plants] that are in the [customSortOrder] at the front of the list.
      */
     private fun List<Plant>.applySort(customSortOrder: List<String>): List<Plant> {
         return sortedBy { plant ->
