@@ -20,6 +20,8 @@ class NavDrawerActivity : AppCompatActivity() {
          */
         val drawerToggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(drawerToggle)
+        // Set a simple drawable used for the left or right shadow
+        drawer.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START)
         drawerToggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
