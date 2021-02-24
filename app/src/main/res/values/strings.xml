@@ -43,5 +43,6 @@
     <string name="advanced_coroutines">Advanced Coroutines</string>
     <string name="a11y_plant_item_image">Picture of plant</string>
     <string name="menu_filter_by_grow_zone">Filter by grow zone</string>
+    <string name="navDrawer">Nav Drawer</string>
 
 </resources>
