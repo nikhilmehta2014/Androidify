@@ -32,4 +32,11 @@
     </style>
 
     <dimen name="card_corner_radius">12dp</dimen>
+
+    <style name="NavDrawerTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 </resources>

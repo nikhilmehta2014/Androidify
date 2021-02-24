@@ -54,7 +54,8 @@
             android:name=".projects.layouts.constraintlayout.ConstraintLayoutExample1"
             android:exported="true" />
         <activity android:name=".codelabs.coroutinesadvanced.ui.AdvancedCoroutinesActivity" />
-        <activity android:name=".projects.navdrawer.NavDrawerActivity" />
+        <activity android:name=".projects.navdrawer.NavDrawerActivity"
+            android:theme="@style/NavDrawerTheme"/>
     </application>
 
 </manifest>
