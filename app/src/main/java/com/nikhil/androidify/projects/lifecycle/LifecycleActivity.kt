@@ -1,8 +1,8 @@
 package com.nikhil.androidify.projects.lifecycle
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.nikhil.androidify.R
+import androidx.appcompat.app.AppCompatActivity
+import com.nikhil.androidify.databinding.ActivityMainStaticBinding
 import timber.log.Timber
 
 /**
@@ -13,6 +13,9 @@ import timber.log.Timber
  */
 class LifecycleActivity : AppCompatActivity() {
 
+    //    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainStaticBinding
+
     private val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,11 +23,13 @@ class LifecycleActivity : AppCompatActivity() {
         Timber.d("$TAG -> onCreate()")
 
         //Add a [Fragment] Dynamically
-//        setContentView(R.layout.activity_main)
+//        binding = ActivityMainBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
 //        setupFragment()
 
         //Add a [Fragment] Statically
-        setContentView(R.layout.activity_main_static)
+        binding = ActivityMainStaticBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     override fun onRestart() {

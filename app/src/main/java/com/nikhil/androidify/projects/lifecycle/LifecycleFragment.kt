@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.nikhil.androidify.R
+import com.nikhil.androidify.databinding.FragmentLifecycleBinding
 import timber.log.Timber
 
 class LifecycleFragment : Fragment() {
+
+    private var _binding: FragmentLifecycleBinding? = null
+    private val binding
+        get() = _binding!!
 
     companion object {
 
@@ -27,9 +31,10 @@ class LifecycleFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         Timber.d("$TAG -> onCreateView()")
-        return inflater.inflate(R.layout.fragment_lifecycle, container, false)
+        _binding = FragmentLifecycleBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -1,22 +1,24 @@
 package com.nikhil.androidify.projects.launchmodes
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
-import com.nikhil.androidify.R
+import androidx.appcompat.app.AppCompatActivity
+import com.nikhil.androidify.databinding.ActivityThirdBinding
 
 class ThirdActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityThirdBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_third)
+
+        binding = ActivityThirdBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         Toast.makeText(this, "Task Id = $taskId", Toast.LENGTH_SHORT).show()
 
-        val cButton = findViewById<Button>(R.id.btn_c)
-        cButton.setOnClickListener{
+        binding.btnC.setOnClickListener {
             startActivity(Intent(this, FourthActivity::class.java))
         }
     }
