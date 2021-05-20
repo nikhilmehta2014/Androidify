@@ -8,25 +8,29 @@ import com.nikhil.androidify.codelabs.coroutines.main.BasicCoroutinesActivity
 import com.nikhil.androidify.codelabs.coroutinesadvanced.ui.AdvancedCoroutinesActivity
 import com.nikhil.androidify.codelabs.databinding.basicsample.BasicSampleActivity
 import com.nikhil.androidify.codelabs.roomwithaview.WordActivity
-import kotlinx.android.synthetic.main.activity_codelabs.*
+import com.nikhil.androidify.databinding.ActivityCodelabsBinding
 
 class CodeLabsActivity :AppCompatActivity(){
 
+    private lateinit var binding:ActivityCodelabsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_codelabs)
+
+        binding = ActivityCodelabsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         title = getString(R.string.activity_codeLabs)
 
-        tv_room.setOnClickListener {
+        binding.tvRoom.setOnClickListener {
             startActivity(Intent(this, WordActivity::class.java))
         }
-        tv_data_binding.setOnClickListener {
+        binding.tvDataBinding.setOnClickListener {
             startActivity(Intent(this, BasicSampleActivity::class.java))
         }
-        tv_basic_coroutines.setOnClickListener {
+        binding.tvBasicCoroutines.setOnClickListener {
             startActivity(Intent(this, BasicCoroutinesActivity::class.java))
         }
-        tv_advanced_coroutines.setOnClickListener {
+        binding.tvAdvancedCoroutines.setOnClickListener {
             startActivity(Intent(this, AdvancedCoroutinesActivity::class.java))
         }
     }
