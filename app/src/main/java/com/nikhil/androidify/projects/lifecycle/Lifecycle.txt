@@ -1,0 +1,48 @@
+Lifecycle Notes:
+...
+
+Scenario 1:
+Open FragmentB from FragmentA
+Add without backstack
+
+Sub-Scenario 1:
+// Open FragmentA from Activity
+LifecycleFragmentA -> onCreate()
+LifecycleFragmentA -> onCreateView()
+LifecycleFragmentA -> onViewCreated()
+LifecycleFragmentA -> onActivityCreated()
+LifecycleFragmentA -> onStart()
+LifecycleFragmentA -> onResume()
+
+// Open FragmentB from FragmentA
+LifecycleFragmentB -> onCreate()
+LifecycleFragmentB -> onCreateView()
+LifecycleFragmentB -> onViewCreated()
+LifecycleFragmentB -> onActivityCreated()
+LifecycleFragmentB -> onStart()
+LifecycleFragmentB -> onResume()
+
+// Press back from FragmentB
+LifecycleFragmentA -> onPause()
+LifecycleFragmentB -> onPause()
+LifecycleFragmentA -> onStop()
+LifecycleFragmentB -> onStop()
+LifecycleFragmentA -> onDestroyView()
+LifecycleFragmentA -> onDestroy()
+LifecycleFragmentA -> onDetach()
+LifecycleFragmentB -> onDestroyView()
+LifecycleFragmentB -> onDestroy()
+LifecycleFragmentB -> onDetach()
+
+Sub-Scenario 2:
+// Open FragmentA from Activity         -> Same as Sub-Scenario 1
+// Open FragmentB from FragmentA        -> Same as Sub-Scenario 1
+// Press home/Recent Apps button from FragmentB
+LifecycleFragmentA -> onPause()
+LifecycleFragmentB -> onPause()
+LifecycleFragmentA -> onStop()
+LifecycleFragmentB -> onStop()
+
+
+Note: If you keep on adding the fragments, popping them from the stack will be in similar way.
+For ex - If you add same fragment 5 times, it has to be popped 5 times.
