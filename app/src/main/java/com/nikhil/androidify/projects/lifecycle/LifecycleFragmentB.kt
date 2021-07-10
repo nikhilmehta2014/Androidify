@@ -5,22 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.nikhil.androidify.R
-import com.nikhil.androidify.databinding.FragmentLifecycleABinding
+import com.nikhil.androidify.databinding.FragmentLifecycleBBinding
 import timber.log.Timber
 
-class LifecycleFragmentA : Fragment() {
+class LifecycleFragmentB : Fragment() {
 
-    private var _binding: FragmentLifecycleABinding? = null
+    private var _binding: FragmentLifecycleBBinding? = null
     private val binding
         get() = _binding!!
 
     companion object {
 
-        private const val TAG = "LifecycleFragmentA"
+        private const val TAG = "LifecycleFragmentB"
 
         @JvmStatic
-        fun newInstance() = LifecycleFragmentA()
+        fun newInstance() = LifecycleFragmentB()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,15 +33,13 @@ class LifecycleFragmentA : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         Timber.d("$TAG -> onCreateView()")
-        _binding = FragmentLifecycleABinding.inflate(inflater, container, false)
+        _binding = FragmentLifecycleBBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("$TAG -> onViewCreated()")
-
-        setClickListeners()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -83,14 +80,5 @@ class LifecycleFragmentA : Fragment() {
     override fun onDetach() {
         super.onDetach()
         Timber.d("$TAG -> onDetach()")
-    }
-
-    private fun setClickListeners() {
-        _binding?.btnFragA?.setOnClickListener {
-            requireActivity().supportFragmentManager
-                .beginTransaction()
-                .add(R.id.lifecycle_fragment, LifecycleFragmentB.newInstance())
-                .commit()
-        }
     }
 }
