@@ -90,6 +90,7 @@ class LifecycleFragmentA : Fragment() {
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .add(R.id.lifecycle_fragment, LifecycleFragmentB.newInstance())
+                .addToBackStack(null)
                 .commit()
         }
     }
