@@ -89,7 +89,7 @@ class LifecycleFragmentA : Fragment() {
         _binding?.btnFragA?.setOnClickListener {
             requireActivity().supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.lifecycle_fragment, LifecycleFragmentB.newInstance())
+                .replace(R.id.contentFrame, LifecycleFragmentB.newInstance())
                 .commit()
         }
     }

@@ -2,7 +2,8 @@ package com.nikhil.androidify.projects.lifecycle
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.nikhil.androidify.databinding.ActivityMainStaticBinding
+import com.nikhil.androidify.R
+import com.nikhil.androidify.databinding.ActivityLifecycleBinding
 import timber.log.Timber
 
 /**
@@ -14,7 +15,8 @@ import timber.log.Timber
 class LifecycleActivity : AppCompatActivity() {
 
     //    private lateinit var binding: ActivityMainBinding
-    private lateinit var binding: ActivityMainStaticBinding
+//    private lateinit var binding: ActivityMainStaticBinding
+    private lateinit var binding: ActivityLifecycleBinding
 
     private val TAG = "LifecycleActivity"
 
@@ -23,13 +25,13 @@ class LifecycleActivity : AppCompatActivity() {
         Timber.d("$TAG -> onCreate()")
 
         //Add a [Fragment] Dynamically
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//        setupFragment()
+        binding = ActivityLifecycleBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupFragment()
 
         //Add a [Fragment] Statically
-        binding = ActivityMainStaticBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+//        binding = ActivityMainStaticBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
     }
 
     override fun onRestart() {
@@ -65,9 +67,9 @@ class LifecycleActivity : AppCompatActivity() {
     /**
      * Adding a [Fragment] Dynamically
      */
-    /*private fun setupFragment() {
+    private fun setupFragment() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.contentFrame, LifecycleFragment.newInstance(), TAG)
+            .add(R.id.contentFrame, LifecycleFragmentA.newInstance(), TAG)
             .commit()
-    }*/
+    }
 }
