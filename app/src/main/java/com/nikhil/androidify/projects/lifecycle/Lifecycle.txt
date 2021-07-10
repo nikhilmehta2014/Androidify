@@ -46,3 +46,36 @@ LifecycleFragmentB -> onStop()
 
 Note: If you keep on adding the fragments, popping them from the stack will be in similar way.
 For ex - If you add same fragment 5 times, it has to be popped 5 times.
+
+Note: If you have 2 Fragments with TextView and Button in both, when you go from Fragment A to Fragment B,
+TextView text will be updated but Button text will not be updated on the user's app UI and
+it will still show Button text of Fragment A on Fragment B.
+
+
+
+
+Scenario 2:
+Open FragmentB from FragmentA
+Add with backstack
+
+Sub-Scenario 1:
+// Open FragmentA from Activity         -> Same as Sub-Scenario 1 of Scenario 1
+// Open FragmentB from FragmentA        -> Same as Sub-Scenario 1 of Scenario 1
+// Press back from FragmentB
+LifecycleFragmentB -> onPause()
+LifecycleFragmentB -> onStop()
+LifecycleFragmentB -> onDestroyView()
+LifecycleFragmentB -> onDestroy()
+LifecycleFragmentB -> onDetach()
+
+// Press back from FragmentA
+LifecycleFragmentA -> onPause()
+LifecycleFragmentA -> onStop()
+LifecycleFragmentA -> onDestroyView()
+LifecycleFragmentA -> onDestroy()
+LifecycleFragmentA -> onDetach()
+
+Sub-Scenario 2:
+// Open FragmentA from Activity                     -> Same as Sub-Scenario 2 of Scenario 1
+// Open FragmentB from FragmentA                    -> Same as Sub-Scenario 2 of Scenario 1
+// Press home/Recent Apps button from FragmentB     -> Same as Sub-Scenario 2 of Scenario 1
