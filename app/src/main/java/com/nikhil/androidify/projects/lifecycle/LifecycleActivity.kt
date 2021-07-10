@@ -16,7 +16,7 @@ class LifecycleActivity : AppCompatActivity() {
     //    private lateinit var binding: ActivityMainBinding
     private lateinit var binding: ActivityMainStaticBinding
 
-    private val TAG = "MainActivity"
+    private val TAG = "LifecycleActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

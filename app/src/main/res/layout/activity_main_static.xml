@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/lifecycle_fragment"
-        android:name="com.nikhil.androidify.projects.lifecycle.LifecycleFragment"
+        android:name="com.nikhil.androidify.projects.lifecycle.LifecycleFragmentA"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".projects.lifecycle.LifecycleActivity"/>

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.nikhil.androidify.databinding.FragmentLifecycleBinding
 import timber.log.Timber
 
-class LifecycleFragment : Fragment() {
+class LifecycleFragmentA : Fragment() {
 
     private var _binding: FragmentLifecycleBinding? = null
     private val binding
@@ -16,10 +16,10 @@ class LifecycleFragment : Fragment() {
 
     companion object {
 
-        private const val TAG = "NormalFragment"
+        private const val TAG = "LifecycleFragment"
 
         @JvmStatic
-        fun newInstance() = LifecycleFragment()
+        fun newInstance() = LifecycleFragmentA()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +35,11 @@ class LifecycleFragment : Fragment() {
         Timber.d("$TAG -> onCreateView()")
         _binding = FragmentLifecycleBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Timber.d("$TAG -> onViewCreated()")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -75,11 +80,5 @@ class LifecycleFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         Timber.d("$TAG -> onDetach()")
-    }
-
-    // This is not getting called, why?
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Timber.d("$TAG -> onViewCreated()")
     }
 }
