@@ -79,3 +79,14 @@ Sub-Scenario 2:
 // Open FragmentA from Activity                     -> Same as Sub-Scenario 2 of Scenario 1
 // Open FragmentB from FragmentA                    -> Same as Sub-Scenario 2 of Scenario 1
 // Press home/Recent Apps button from FragmentB     -> Same as Sub-Scenario 2 of Scenario 1
+
+
+
+
+Scenario 3:
+Open FragmentB from FragmentA
+Replace without backstack
+
+Sub-Scenario 1:
+// Open FragmentA from Activity                 -> Same as Sub-Scenario 1 of Scenario 1 ??
+// Open FragmentB from FragmentA
