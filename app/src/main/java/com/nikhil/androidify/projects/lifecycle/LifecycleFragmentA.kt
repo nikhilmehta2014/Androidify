@@ -89,8 +89,7 @@ class LifecycleFragmentA : Fragment() {
         _binding?.btnFragA?.setOnClickListener {
             requireActivity().supportFragmentManager
                 .beginTransaction()
-                .add(R.id.lifecycle_fragment, LifecycleFragmentB.newInstance())
-                .addToBackStack(null)
+                .replace(R.id.lifecycle_fragment, LifecycleFragmentB.newInstance())
                 .commit()
         }
     }
