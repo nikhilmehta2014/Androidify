@@ -90,6 +90,7 @@ class LifecycleFragmentA : Fragment() {
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.contentFrame, LifecycleFragmentB.newInstance())
+                .addToBackStack(null)
                 .commit()
         }
     }
