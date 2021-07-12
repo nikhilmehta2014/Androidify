@@ -21,6 +21,10 @@ class TopicsActivity : AppCompatActivity() {
         setContentView(binding.root)
         title = getString(R.string.activity_topics)
 
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
         binding.tvLifecycle.setOnClickListener {
             startActivity(Intent(this, LifecycleActivity::class.java))
         }
