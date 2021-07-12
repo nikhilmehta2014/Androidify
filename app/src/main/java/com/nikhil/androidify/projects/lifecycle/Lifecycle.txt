@@ -216,3 +216,6 @@ LifecycleFragmentB -> onDestroy()
 LifecycleFragmentB -> onDetach()
 LifecycleFragmentA -> onDestroy()
 LifecycleFragmentA -> onDetach()
+
+
+//TODO : include example of showing BottomSheetDialogFragment in all the scenarios
