@@ -3,11 +3,11 @@ Lifecycle Notes:
 
 File location = https://github.com/nikhilmehta2014/Androidify/blob/master/app/src/main/java/com/nikhil/androidify/projects/lifecycle/Lifecycle.txt
 
-Scenario 1:
+----------------------------------------------Scenario 1----------------------------------------------
 Open FragmentB from FragmentA
 Add without backstack
 
-Sub-Scenario 1:
+--------------------------------------------Sub-Scenario 1--------------------------------------------
 // Open FragmentA from Activity
 LifecycleFragmentA -> onCreate()
 LifecycleFragmentA -> onCreateView()
@@ -26,18 +26,18 @@ LifecycleFragmentB -> onResume()
 
 // Press back from FragmentB
 LifecycleFragmentA -> onPause()
-LifecycleFragmentB -> onPause()
+LifecycleFragmentB      -> onPause()
 LifecycleFragmentA -> onStop()
-LifecycleFragmentB -> onStop()
+LifecycleFragmentB      -> onStop()
 LifecycleFragmentA -> onDestroyView()
 LifecycleFragmentA -> onDestroy()
 LifecycleFragmentA -> onDetach()
-LifecycleFragmentB -> onDestroyView()
-LifecycleFragmentB -> onDestroy()
-LifecycleFragmentB -> onDetach()
+LifecycleFragmentB      -> onDestroyView()
+LifecycleFragmentB      -> onDestroy()
+LifecycleFragmentB      -> onDetach()
 
 
-Sub-Scenario 2:
+--------------------------------------------Sub-Scenario 2--------------------------------------------
 // Open FragmentA from Activity         -> Same as Sub-Scenario 1
 // Open FragmentB from FragmentA        -> Same as Sub-Scenario 1
 // Press home/Recent Apps button from FragmentB
@@ -47,7 +47,7 @@ LifecycleFragmentA -> onStop()
 LifecycleFragmentB -> onStop()
 
 
-Sub-Scenario 3:
+--------------------------------------------Sub-Scenario 3--------------------------------------------
 // Open FragmentA from Activity                     -> Same as Sub-Scenario 1
 // Open FragmentB from FragmentA                    -> Same as Sub-Scenario 1
 // Press home/Recent Apps button from FragmentB     -> Same as Sub-Scenario 2
@@ -62,11 +62,11 @@ For ex - If you add same fragment 5 times, it has to be popped 5 times.
 
 
 
-Scenario 2:
+----------------------------------------------Scenario 2----------------------------------------------
 Open FragmentB from FragmentA
 Add with backstack
 
-Sub-Scenario 1:
+--------------------------------------------Sub-Scenario 1--------------------------------------------
 // Open FragmentA from Activity         -> Same as Sub-Scenario 1 of Scenario 1
 // Open FragmentB from FragmentA        -> Same as Sub-Scenario 1 of Scenario 1
 // Press back from FragmentB
@@ -84,13 +84,13 @@ LifecycleFragmentA -> onDestroy()
 LifecycleFragmentA -> onDetach()
 
 
-Sub-Scenario 2:
+--------------------------------------------Sub-Scenario 2--------------------------------------------
 // Open FragmentA from Activity                     -> Same as Sub-Scenario 2 of Scenario 1
 // Open FragmentB from FragmentA                    -> Same as Sub-Scenario 2 of Scenario 1
 // Press home/Recent Apps button from FragmentB     -> Same as Sub-Scenario 2 of Scenario 1
 
 
-Sub-Scenario 3:
+--------------------------------------------Sub-Scenario 3--------------------------------------------
 // Open FragmentA from Activity                     -> Same as Sub-Scenario 1
 // Open FragmentB from FragmentA                    -> Same as Sub-Scenario 1
 // Press home/Recent Apps button from FragmentB     -> Same as Sub-Scenario 2
@@ -100,11 +100,11 @@ LifecycleFragmentA -> onDestroyView()
 
 
 
-Scenario 3:
+----------------------------------------------Scenario 3----------------------------------------------
 Open FragmentB from FragmentA
 Replace without backstack
 
-Sub-Scenario 1:
+--------------------------------------------Sub-Scenario 1--------------------------------------------
 // Open FragmentA from Activity
 LifecycleFragmentA -> onCreate()
 LifecycleFragmentA -> onCreateView()
@@ -114,17 +114,17 @@ LifecycleFragmentA -> onStart()
 LifecycleFragmentA -> onResume()
 
 // Open FragmentB from FragmentA
-LifecycleFragmentB -> onCreate()
+LifecycleFragmentB      -> onCreate()
 LifecycleFragmentA -> onPause()
 LifecycleFragmentA -> onStop()
 LifecycleFragmentA -> onDestroyView()
 LifecycleFragmentA -> onDestroy()
 LifecycleFragmentA -> onDetach()
-LifecycleFragmentB -> onCreateView()
-LifecycleFragmentB -> onViewCreated()
-LifecycleFragmentB -> onActivityCreated()
-LifecycleFragmentB -> onStart()
-LifecycleFragmentB -> onResume()
+LifecycleFragmentB      -> onCreateView()
+LifecycleFragmentB      -> onViewCreated()
+LifecycleFragmentB      -> onActivityCreated()
+LifecycleFragmentB      -> onStart()
+LifecycleFragmentB      -> onResume()
 
 // Press back from FragmentB
 LifecycleFragmentB -> onPause()
@@ -134,7 +134,7 @@ LifecycleFragmentB -> onDestroy()
 LifecycleFragmentB -> onDetach()
 
 
-Sub-Scenario 2:
+--------------------------------------------Sub-Scenario 2--------------------------------------------
 // Open FragmentA from Activity         -> Same as Sub-Scenario 1 of Scenario 3
 // Open FragmentB from FragmentA        -> Same as Sub-Scenario 1 of Scenario 3
 // Press home/Recent Apps button from FragmentB
@@ -142,7 +142,7 @@ LifecycleFragmentB -> onPause()
 LifecycleFragmentB -> onStop()
 
 
-Sub-Scenario 3:
+--------------------------------------------Sub-Scenario 3--------------------------------------------
 // Open FragmentA from Activity         -> Same as Sub-Scenario 1 of Scenario 3
 // Open FragmentB from FragmentA        -> Same as Sub-Scenario 1 of Scenario 3
 // Press home/Recent Apps button from FragmentB
@@ -154,11 +154,11 @@ LifecycleFragmentB -> onDetach()
 
 
 
-Scenario 4:
+----------------------------------------------Scenario 4----------------------------------------------
 Open FragmentB from FragmentA
 Replace with backstack
 
-Sub-Scenario 1:
+--------------------------------------------Sub-Scenario 1--------------------------------------------
 // Open FragmentA from Activity
 LifecycleFragmentA -> onCreate()
 LifecycleFragmentA -> onCreateView()
@@ -168,22 +168,22 @@ LifecycleFragmentA -> onStart()
 LifecycleFragmentA -> onResume()
 
 // Open FragmentB from FragmentA
-LifecycleFragmentB -> onCreate()
+LifecycleFragmentB      -> onCreate()
 LifecycleFragmentA -> onPause()
 LifecycleFragmentA -> onStop()
 LifecycleFragmentA -> onDestroyView()
-LifecycleFragmentB -> onCreateView()
-LifecycleFragmentB -> onViewCreated()
-LifecycleFragmentB -> onActivityCreated()
-LifecycleFragmentB -> onStart()
-LifecycleFragmentB -> onResume()
+LifecycleFragmentB      -> onCreateView()
+LifecycleFragmentB      -> onViewCreated()
+LifecycleFragmentB      -> onActivityCreated()
+LifecycleFragmentB      -> onStart()
+LifecycleFragmentB      -> onResume()
 
 // Press back from FragmentB
-LifecycleFragmentB -> onPause()
-LifecycleFragmentB -> onStop()
-LifecycleFragmentB -> onDestroyView()
-LifecycleFragmentB -> onDestroy()
-LifecycleFragmentB -> onDetach()
+LifecycleFragmentB      -> onPause()
+LifecycleFragmentB      -> onStop()
+LifecycleFragmentB      -> onDestroyView()
+LifecycleFragmentB      -> onDestroy()
+LifecycleFragmentB      -> onDetach()
 LifecycleFragmentA -> onCreateView()
 LifecycleFragmentA -> onViewCreated()
 LifecycleFragmentA -> onActivityCreated()
@@ -198,7 +198,7 @@ LifecycleFragmentA -> onDestroy()
 LifecycleFragmentA -> onDetach()
 
 
-Sub-Scenario 2:
+--------------------------------------------Sub-Scenario 2--------------------------------------------
 // Open FragmentA from Activity         -> Same as Sub-Scenario 1
 // Open FragmentB from FragmentA        -> Same as Sub-Scenario 1
 // Press home/Recent Apps button from FragmentB
