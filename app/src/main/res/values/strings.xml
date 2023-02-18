@@ -55,4 +55,6 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
+    <string name="lifecycle_activity_a">LifeCycleActivity A</string>
+
 </resources>

@@ -7,7 +7,8 @@ import com.nikhil.androidify.R
 import com.nikhil.androidify.databinding.ActivityTopicsBinding
 import com.nikhil.androidify.projects.launchmodes.FirstActivity
 import com.nikhil.androidify.projects.layouts.constraintlayout.ConstraintLayoutExample1
-import com.nikhil.androidify.projects.lifecycle.LifecycleActivity
+import com.nikhil.androidify.projects.lifecycle.activity.LifecycleActivityA
+import com.nikhil.androidify.projects.lifecycle.fragments.LifecycleActivity
 import com.nikhil.androidify.projects.navdrawer.NavDrawerActivity
 
 class TopicsActivity : AppCompatActivity() {
@@ -26,7 +27,8 @@ class TopicsActivity : AppCompatActivity() {
 
     private fun setClickListeners() {
         binding.tvLifecycle.setOnClickListener {
-            startActivity(Intent(this, LifecycleActivity::class.java))
+//            startActivity(Intent(this, LifecycleActivity::class.java))
+            startActivity(Intent(this, LifecycleActivityA::class.java))
         }
         binding.tvLaunchModes.setOnClickListener {
             startActivity(Intent(this, FirstActivity::class.java))

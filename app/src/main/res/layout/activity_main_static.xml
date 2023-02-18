@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".projects.lifecycle.LifecycleActivity">
+    tools:context=".projects.lifecycle.fragments.LifecycleActivity">
 
     <fragment
         android:id="@+id/lifecycle_fragment"
-        android:name="com.nikhil.androidify.projects.lifecycle.LifecycleFragmentA"
+        android:name="com.nikhil.androidify.projects.lifecycle.fragments.LifecycleFragmentA"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".projects.lifecycle.LifecycleActivity"/>
+        tools:context=".projects.lifecycle.fragments.LifecycleActivity"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

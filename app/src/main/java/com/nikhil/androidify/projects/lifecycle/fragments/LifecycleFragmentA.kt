@@ -1,4 +1,4 @@
-package com.nikhil.androidify.projects.lifecycle
+package com.nikhil.androidify.projects.lifecycle.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

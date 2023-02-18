@@ -1,0 +1,19 @@
+Lifecycle Notes:
+...
+
+File location = https://github.com/nikhilmehta2014/Androidify/blob/master/app/src/main/java/com/nikhil/androidify/projects/lifecycle/Lifecycle.txt
+
+----------------------------------------------Scenario 1----------------------------------------------
+// Open LifecycleActivityA
+LifecycleActivityA -> onCreate()
+LifecycleActivityA -> onStart()
+LifecycleActivityA -> onResume()
+
+// Press home/Recents Menu button
+LifecycleActivityA -> onPause()
+LifecycleActivityA -> onStop()
+
+// Open LifecycleActivityA again from recent apps/clicking on app icon
+LifecycleActivityA -> onRestart()
+LifecycleActivityA -> onStart()
+LifecycleActivityA -> onResume()
