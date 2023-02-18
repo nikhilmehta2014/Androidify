@@ -1,5 +1,6 @@
 package com.nikhil.androidify.projects.lifecycle.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,11 @@ class LifecycleFragmentA : Fragment() {
 
         @JvmStatic
         fun newInstance() = LifecycleFragmentA()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Timber.d("$TAG -> onAttach()")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
