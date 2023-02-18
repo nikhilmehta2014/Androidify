@@ -19,7 +19,8 @@
             tools:node="remove" />
 
 <!--        <activity android:name=".MainActivity">-->
-        <activity android:name=".projects.lifecycle.LifecycleActivity">
+<!--        <activity android:name=".projects.lifecycle.fragments.LifecycleActivity">-->
+        <activity android:name=".projects.lifecycle.activity.LifecycleActivityA">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,6 +58,7 @@
         <activity android:name=".codelabs.coroutinesadvanced.ui.AdvancedCoroutinesActivity" />
         <activity android:name=".projects.navdrawer.NavDrawerActivity"
             android:theme="@style/NavDrawerTheme"/>
+        <activity android:name=".projects.lifecycle.activity.LifecycleActivityB" />
     </application>
 
 </manifest>

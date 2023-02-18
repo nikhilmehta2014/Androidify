@@ -1,9 +1,9 @@
-package com.nikhil.androidify.projects.lifecycle
+package com.nikhil.androidify.projects.lifecycle.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.nikhil.androidify.R
-import com.nikhil.androidify.databinding.ActivityLifecycleBinding
+import com.nikhil.androidify.databinding.ActivityLifecycleABinding
 import timber.log.Timber
 
 /**
@@ -12,26 +12,25 @@ import timber.log.Timber
  * 2. Press 'Recents' and come back
  * 3. ??
  */
-class LifecycleActivity : AppCompatActivity() {
+class LifecycleActivityA : AppCompatActivity() {
 
-    //    private lateinit var binding: ActivityMainBinding
-//    private lateinit var binding: ActivityMainStaticBinding
-    private lateinit var binding: ActivityLifecycleBinding
+    private lateinit var binding: ActivityLifecycleABinding
 
-    private val TAG = "LifecycleActivity"
+    private val TAG = "LifecycleActivityA_Logs"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Timber.d("$TAG -> onCreate()")
 
-        //Add a [Fragment] Dynamically
-        binding = ActivityLifecycleBinding.inflate(layoutInflater)
+        binding = ActivityLifecycleABinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupFragment()
+        setClickListeners()
+    }
 
-        //Add a [Fragment] Statically
-//        binding = ActivityMainStaticBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
+    private fun setClickListeners() {
+        binding.btnA.setOnClickListener {
+            startActivity(Intent(this, LifecycleActivityB::class.java))
+        }
     }
 
     override fun onRestart() {
@@ -56,20 +55,13 @@ class LifecycleActivity : AppCompatActivity() {
 
     override fun onStop() {
         Timber.d("$TAG -> onStop()")
+//        finish()
         super.onStop()
     }
 
+    // "onDestroy()" is not guaranteed to be called everytime app is killed[tested myself]
     override fun onDestroy() {
         Timber.d("$TAG -> onDestroy()")
         super.onDestroy()
-    }
-
-    /**
-     * Adding a [Fragment] Dynamically
-     */
-    private fun setupFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.contentFrame, LifecycleFragmentA.newInstance(), TAG)
-            .commit()
     }
 }
