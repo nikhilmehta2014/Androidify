@@ -27,8 +27,8 @@ class TopicsActivity : AppCompatActivity() {
 
     private fun setClickListeners() {
         binding.tvLifecycle.setOnClickListener {
-//            startActivity(Intent(this, LifecycleActivity::class.java))
-            startActivity(Intent(this, LifecycleActivityA::class.java))
+            startActivity(Intent(this, LifecycleActivity::class.java))
+//            startActivity(Intent(this, LifecycleActivityA::class.java))
         }
         binding.tvLaunchModes.setOnClickListener {
             startActivity(Intent(this, FirstActivity::class.java))

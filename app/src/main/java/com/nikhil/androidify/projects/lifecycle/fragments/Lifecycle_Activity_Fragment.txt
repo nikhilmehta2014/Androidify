@@ -1,0 +1,30 @@
+Lifecycle Notes:
+...
+
+// TODO - change this url
+File location = https://github.com/nikhilmehta2014/Androidify/blob/master/app/src/main/java/com/nikhil/androidify/projects/lifecycle/Lifecycle.txt
+
+----------------------------------------------Scenario 1----------------------------------------------
+Open Fragment from Activity
+
+--------------------------------------------Sub-Scenario 1--------------------------------------------
+// Open LifecycleFragmentA from LifecycleActivity
+LifecycleActivity   -> onCreate()
+LifecycleActivity   -> onStart()
+LifecycleFragmentA  ->      onAttach()
+LifecycleFragmentA  ->      onCreate()
+LifecycleFragmentA  ->      onCreateView()
+LifecycleFragmentA  ->      onViewCreated()
+LifecycleFragmentA  ->      onActivityCreated()
+LifecycleFragmentA  ->      onStart()
+LifecycleActivity   -> onResume()
+LifecycleFragmentA  -> onResume()
+
+--------------------------------------------Sub-Scenario 2--------------------------------------------
+// Open LifecycleFragmentA from LifecycleActivity       -> Same as Sub-Scenario 1
+// Press back button
+LifecycleActivity   -> onPause()
+LifecycleFragmentA  ->      onPause()
+LifecycleActivity   -> onStop()
+LifecycleFragmentA  ->      onStop()
+LifecycleActivity   -> onDestroy()      // not guaranteed to be called

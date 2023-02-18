@@ -1,7 +1,7 @@
 Lifecycle Notes:
 ...
 
-File location = https://github.com/nikhilmehta2014/Androidify/blob/master/app/src/main/java/com/nikhil/androidify/projects/lifecycle/Lifecycle.txt
+File location = https://github.com/nikhilmehta2014/Androidify/blob/master/app/src/main/java/com/nikhil/androidify/projects/lifecycle/fragments/Lifecycle_Fragments.txt
 
 ----------------------------------------------Scenario 1----------------------------------------------
 Open FragmentB from FragmentA
