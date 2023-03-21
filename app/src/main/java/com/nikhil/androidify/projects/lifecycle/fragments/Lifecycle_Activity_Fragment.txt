@@ -26,4 +26,22 @@ LifecycleActivity   -> onPause()
 LifecycleFragmentA  ->      onPause()
 LifecycleActivity   -> onStop()
 LifecycleFragmentA  ->      onStop()
-LifecycleActivity   -> onDestroy()      // not guaranteed to be called
+LifecycleActivity   -> onDestroy()
+LifecycleFragmentA  ->      onDestroyView()
+LifecycleFragmentA  ->      onDestroy()
+LifecycleFragmentA  ->      onDetach()
+
+
+Q = Why is onDestroy() of fragment called after the  onDestroy() of the activity?
+A =
+The reason why the onDestroy() method of a Fragment is called after the onDestroy() method of its hosting Activity is because
+the Fragment is part of the Activity's view hierarchy, and its lifecycle is tied to the lifecycle of its hosting Activity.
+
+When an Activity is destroyed, all its attached Fragments are destroyed as well.
+The onDestroy() method of the Activity is called first, and then the Fragment's onDestroy() method is called.
+This allows the Fragment to perform any necessary cleanup after the Activity has been destroyed,
+such as releasing resources or unregistering listeners.
+
+It's worth noting that the onDestroyView() method of the Fragment is called before its onDestroy() method because
+the Fragment's view is destroyed before the Fragment itself is destroyed.
+This allows the Fragment to release any resources that are tied to its view, such as views or adapters.

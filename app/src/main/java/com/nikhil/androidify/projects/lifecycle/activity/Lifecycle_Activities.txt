@@ -27,7 +27,7 @@ LifecycleActivityA_Logs -> onResume()
 // Press back button
 LifecycleActivityA_Logs -> onPause()
 LifecycleActivityA_Logs -> onStop()
-<-- onDestroy() is not being called, tested multiple times on Samsung Note M52 5G phone /-->
+LifecycleActivityA_Logs -> onDestroy()
 
 
 ----------------------------------------------Scenario 2----------------------------------------------
@@ -44,7 +44,7 @@ LifecycleActivityB_Logs ->      onStart()
 LifecycleActivityB_Logs ->      onResume()
 LifecycleActivityA_Logs -> onStop()
 
---------------------------------------------Sub-Scenario 1--------------------------------------------
+--------------------------------------------Sub-Scenario 2--------------------------------------------
 // Open LifecycleActivityB from LifecycleActivityA       -> Same as Sub-Scenario 1
 // Press back button from Activity B
 LifecycleActivityB_Logs ->      onPause()
@@ -56,12 +56,36 @@ LifecycleActivityB_Logs ->      onDestroy()
 // Press back button from Activity A also
 LifecycleActivityA_Logs -> onPause()
 LifecycleActivityA_Logs -> onStop()
-<-- onDestroy() is not being called, tested multiple times on Samsung Note M52 5G phone /-->
+LifecycleActivityA_Logs -> onDestroy()
 
---------------------------------------------Sub-Scenario 2--------------------------------------------
+--------------------------------------------Sub-Scenario 3--------------------------------------------
 // Open LifecycleActivityB from LifecycleActivityA       -> Same as Sub-Scenario 1
 // Press home/Recents Menu button
 LifecycleActivityB_Logs -> onPause()
 LifecycleActivityB_Logs -> onStop()
 // Kill app from Recents Menu
-<-- onDestroy() of B is not being called, tested multiple times on Samsung Note M52 5G phone /-->
+LifecycleActivityA_Logs -> onDestroy()
+LifecycleActivityB_Logs -> onDestroy()
+
+
+Q = Why is the onStop() of activity A called after the onResume() of activity B?
+A =
+When Activity B is launched from Activity A, Activity A goes through the onPause() method.
+This method is called when the activity is about to lose focus and is no longer the foreground activity.
+During the onPause() method, Activity A may stop some of its processing, such as
+animations or other updates that are not necessary while the activity is not visible.
+
+After Activity A's onPause() method is called, Activity B's onCreate(), onStart(), and onResume() methods
+are called in order. These methods are responsible for initializing and setting up Activity B,
+making it visible to the user, and bringing it to the foreground.
+
+Once Activity B is in the foreground, Activity A's onStop() method is called.
+This method is called when the activity is no longer visible to the user, and the system can freely
+kill its process if needed. During the onStop() method, Activity A should release any resources that
+are no longer needed while the activity is not visible.
+
+So, the reason why Activity A's onStop() method is called after Activity B's onResume() method is because
+Activity B is now in the foreground and visible to the user, while Activity A is no longer visible
+and is in the background. This order of lifecycle events ensures that the visible activity is always
+in the foreground and can receive user input, while the background activity is not taking up system
+resources unnecessarily.
