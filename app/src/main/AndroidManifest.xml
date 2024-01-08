@@ -13,13 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <provider
-            android:name="androidx.work.impl.WorkManagerInitializer"
-            android:authorities="${applicationId}.workmanager-init"
-            tools:node="remove" />
 
-<!--        <activity android:name=".MainActivity">-->
-        <activity android:name=".projects.lifecycle.fragments.LifecycleActivity"
+<!--        <activity android:name=".projects.lifecycle.fragments.LifecycleActivity"-->
+        <activity android:name=".MainActivity"
             android:exported="true">
 <!--        <activity android:name=".projects.lifecycle.activity.LifecycleActivityA">-->
             <intent-filter>

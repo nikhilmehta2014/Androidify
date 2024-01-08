@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Override application to setup background work via [WorkManager]
  */
-class AndroidifyApp : Application() {
+class AndroidifyApp : Application(), Configuration.Provider {
 
     /**
      * onCreate is called before the first screen is shown to the user.
@@ -28,10 +28,10 @@ class AndroidifyApp : Application() {
      */
     private fun setupWorkManagerJob() {
         // initialize WorkManager with a Factory
-        val workManagerConfiguration = Configuration.Builder()
-            .setWorkerFactory(RefreshMainDataWork.Factory())
-            .build()
-        WorkManager.initialize(this, workManagerConfiguration)
+//        val workManagerConfiguration = Configuration.Builder()
+//            .setWorkerFactory(RefreshMainDataWork.Factory())
+//            .build()
+//        WorkManager.initialize(this, workManagerConfiguration)
 
         // Use constraints to require the work only run when the device is charging and the
         // network is unmetered
@@ -51,4 +51,12 @@ class AndroidifyApp : Application() {
             .enqueueUniquePeriodicWork(RefreshMainDataWork::class.java.name,
                 ExistingPeriodicWorkPolicy.KEEP, work)
     }
+
+    override val workManagerConfiguration: Configuration
+        get() {
+            // initialize WorkManager with a Factory
+            return Configuration.Builder()
+                .setWorkerFactory(RefreshMainDataWork.Factory())
+                .build()
+        }
 }
