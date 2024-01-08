@@ -19,7 +19,8 @@
             tools:node="remove" />
 
 <!--        <activity android:name=".MainActivity">-->
-        <activity android:name=".projects.lifecycle.fragments.LifecycleActivity">
+        <activity android:name=".projects.lifecycle.fragments.LifecycleActivity"
+            android:exported="true">
 <!--        <activity android:name=".projects.lifecycle.activity.LifecycleActivityA">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
