@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.nikhil.androidify">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".AndroidifyApp"
@@ -14,10 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-<!--        <activity android:name=".projects.lifecycle.fragments.LifecycleActivity"-->
-        <activity android:name=".MainActivity"
+        <!--        <activity android:name=".MainActivity"-->
+        <!--        <activity android:name=".projects.lifecycle.fragments.LifecycleActivity"-->
+        <!--        <activity android:name=".projects.lifecycle.activity.LifecycleActivityA">-->
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
-<!--        <activity android:name=".projects.lifecycle.activity.LifecycleActivityA">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,6 +27,9 @@
         </activity>
         <activity
             android:name=".projects.launchmodes.FirstActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".projects.lifecycle.fragments.LifecycleActivity"
             android:launchMode="standard" />
         <activity
             android:name=".projects.launchmodes.SecondActivity"
@@ -44,7 +48,6 @@
             android:launchMode="singleInstance" />
         <activity android:name=".codelabs.roomwithaview.WordActivity" />
         <activity android:name=".codelabs.roomwithaview.NewWordActivity" />
-<!--        <activity android:name=".projects.lifecycle.LifecycleActivity" />-->
         <activity android:name=".projects.TopicsActivity" />
         <activity android:name=".codelabs.CodeLabsActivity" />
         <activity android:name=".codelabs.databinding.basicsample.BasicSampleActivity" />
@@ -53,8 +56,9 @@
             android:name=".projects.layouts.constraintlayout.ConstraintLayoutExample1"
             android:exported="true" />
         <activity android:name=".codelabs.coroutinesadvanced.ui.AdvancedCoroutinesActivity" />
-        <activity android:name=".projects.navdrawer.NavDrawerActivity"
-            android:theme="@style/NavDrawerTheme"/>
+        <activity
+            android:name=".projects.navdrawer.NavDrawerActivity"
+            android:theme="@style/NavDrawerTheme" />
         <activity android:name=".projects.lifecycle.activity.LifecycleActivityB" />
     </application>
 
