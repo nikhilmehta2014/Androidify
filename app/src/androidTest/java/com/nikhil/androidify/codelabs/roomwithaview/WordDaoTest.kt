@@ -5,6 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -51,24 +52,18 @@ class WordDaoTest {
         db.close()
     }
 
-    /**
-     * TODO: correct it
-     */
     @Test
     @Throws(Exception::class)
-    fun insertAndGetWord() {
+    fun insertAndGetWord() = runTest {
         val word = Word("word")
         wordDao.insert(word)
         val allWords = wordDao.getAlphabetizedWords().waitForValue()
         assertEquals(allWords[0].word, word.word)
     }
 
-    /**
-     * TODO: correct it
-     */
     @Test
     @Throws(Exception::class)
-    fun getAllWords() {
+    fun getAllWords() = runTest {
         val word = Word("aaa")
         wordDao.insert(word)
         val word2 = Word("bbb")
@@ -78,12 +73,9 @@ class WordDaoTest {
         assertEquals(allWords[1].word, word2.word)
     }
 
-    /**
-     * TODO: correct it
-     */
     @Test
     @Throws(Exception::class)
-    fun deleteAll() {
+    fun deleteAll() = runTest {
         val word = Word("word")
         wordDao.insert(word)
         val word2 = Word("word2")
